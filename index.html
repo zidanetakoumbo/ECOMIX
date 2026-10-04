@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hypothèses — Modèle financier solaire</title>
+  <meta name="description" content="Étude technico-économique de projets solaires — feuille Hypothèses (Green Power Technologie).">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="toolbar">
+    <span class="tab">Hypothèses</span>
+    <span class="legend"><span class="swatch" style="background:#FFF6CC"></span>Saisie</span>
+    <span class="legend"><span class="swatch"></span>Calcul</span>
+    <span class="spacer"></span>
+    <button type="button" id="btn-reset">Valeurs par défaut</button>
+    <button type="button" id="btn-export">Exporter JSON</button>
+    <button type="button" id="btn-print">Imprimer</button>
+  </header>
+
+  <main class="sheet-wrap">
+    <table class="sheet" aria-label="Hypothèses">
+      <colgroup>
+        <col class="A"><col class="B"><col class="C"><col class="D"><col class="E">
+        <col class="F"><col class="G"><col class="H"><col class="I">
+      </colgroup>
+      <tbody id="sheet-body"></tbody>
+    </table>
+    <noscript>JavaScript est requis pour afficher cette feuille.</noscript>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/format.js"></script>
+  <script src="js/formulas.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
