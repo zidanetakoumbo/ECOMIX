@@ -1,0 +1,117 @@
+/*
+ * Thème repris à l'identique de la feuille Excel « Hypothèses ».
+ * Toutes les couleurs sont centralisées ici sous forme de variables.
+ */
+:root {
+  --green-dark: #0B3D2E;   /* bandeau titre, valeurs calculées */
+  --green: #14532D;        /* bandeaux de section, valeurs converties */
+  --orange: #F5A623;       /* sous-titre */
+  --input-bg: #FFF6CC;     /* cases de saisie (jaune) */
+  --input-fg: #1F4E9C;     /* texte saisi (bleu) */
+  --text: #1F2937;         /* libellés */
+  --muted: #6B7280;        /* unités, commentaires */
+  --border: #DCE7DF;       /* bordures fines des cellules */
+  --error: #B91C1C;
+  --page: #FFFFFF;
+  --chrome: #F3F4F6;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Barre d'outils (hors feuille) ─────────────────────────────────────── */
+.toolbar {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  padding: 8px 16px;
+  background: var(--chrome);
+  border-bottom: 1px solid #E5E7EB;
+  font-size: 13px;
+}
+.toolbar .tab {
+  font-weight: bold; color: var(--green-dark);
+  padding: 4px 10px; background: #fff; border: 1px solid var(--border); border-bottom: 2px solid var(--green);
+}
+.toolbar .spacer { flex: 1; }
+.toolbar button {
+  font: inherit; cursor: pointer;
+  padding: 5px 12px; border-radius: 4px;
+  border: 1px solid var(--green); background: #fff; color: var(--green);
+}
+.toolbar button:hover { background: var(--green); color: #fff; }
+.toolbar .legend { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }
+.toolbar .swatch { width: 14px; height: 14px; border: 1px solid var(--border); display: inline-block; }
+
+/* ── Feuille ───────────────────────────────────────────────────────────── */
+.sheet-wrap { overflow-x: auto; padding: 0 0 32px; }
+
+table.sheet {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 1039px;
+}
+/* Largeurs de colonnes Excel : A=50, B=3, C/D=15, E=11, F=3, G:I=15 */
+col.A { width: 355px; } col.B { width: 26px; } col.C, col.D { width: 110px; }
+col.E { width: 82px; } col.F { width: 26px; } col.G, col.H, col.I { width: 110px; }
+
+.sheet td {
+  padding: 1px 4px;
+  vertical-align: middle;
+  font-size: 9.5pt;
+  height: 14.5pt;
+  overflow: hidden;
+}
+
+/* En-têtes */
+.title    { background: var(--green-dark); color: #fff; font-weight: bold; font-size: 16pt !important; padding-left: 10px !important; }
+.subtitle { background: var(--green-dark); color: var(--orange); font-weight: bold; font-size: 10.5pt !important; padding-left: 10px !important; }
+.section  { background: var(--green); color: #fff; font-weight: bold; font-size: 11pt !important; padding-left: 10px !important; height: 19.5pt !important; }
+.spacer   { padding: 0 !important; }
+.row-spacer td { height: auto; }
+
+/* Libellés, unités, commentaires */
+.label        { font-weight: bold; color: var(--text); white-space: normal; }
+.label-normal { color: var(--text); }
+.label-light  { color: var(--muted); font-size: 9pt !important; }
+.unit         { color: var(--muted); font-size: 8.5pt !important; white-space: normal; }
+.unit-sm      { color: var(--muted); font-size: 8pt !important; white-space: normal; }
+.note         { color: var(--muted); font-style: italic; font-size: 8pt !important; white-space: normal; line-height: 1.25; }
+.info         { color: var(--muted); font-style: italic; font-size: 9pt !important; vertical-align: top !important; white-space: normal; padding-top: 3px !important; }
+
+/* Cellules de valeurs */
+.cell { border: 1px solid var(--border); text-align: center; font-weight: bold; white-space: nowrap; }
+.cell.input  { background: var(--input-bg); padding: 0; }
+.cell.calc   { color: var(--green-dark); }
+.cell.conv   { color: var(--green); }
+.cell.check  { color: var(--muted); font-weight: normal; font-size: 9pt; }
+.cell.recap  { color: var(--text); font-weight: normal; }
+.cell.recap.bold { color: var(--green-dark); font-weight: bold; }
+.cell.error  { color: var(--error); }
+.recap-head  { color: var(--green-dark); font-weight: bold; text-align: center; }
+
+.cell.input input,
+.cell.input select {
+  width: 100%; height: 100%; min-height: 18px;
+  border: 0; margin: 0; padding: 1px 4px;
+  background: transparent;
+  color: var(--input-fg); font: bold 9.5pt Arial, Helvetica, sans-serif;
+  text-align: center; text-align-last: center;
+}
+.cell.input input:focus,
+.cell.input select:focus { outline: 2px solid var(--input-fg); outline-offset: -2px; background: #fff; }
+.cell.input input.invalid { outline: 2px solid var(--error); outline-offset: -2px; color: var(--error); }
+
+/* ── Impression ────────────────────────────────────────────────────────── */
+@media print {
+  .toolbar { display: none; }
+  .sheet-wrap { overflow: visible; padding: 0; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  table.sheet { width: 100%; }
+  tr { break-inside: avoid; }
+}
